@@ -26,7 +26,6 @@ function App() {
           currentPage={currentPage}
           handlePageChange={handlePageChange}
         />
-        <Pdf/>
         {renderPage()}
       </div>
     );

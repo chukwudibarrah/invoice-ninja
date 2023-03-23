@@ -13,7 +13,7 @@ function Pdf() {
     const doc = new PdfMakeWrapper();
 
     // Add content to the document
-    doc.add('Hello, world!');
+    doc.add('This is a test');
 
     // Generate the PDF and open it in a new tab
     const pdf = await doc.create().download();
