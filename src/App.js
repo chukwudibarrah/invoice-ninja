@@ -3,6 +3,7 @@ import Home from './components/homepage/homepage'
 import Input from './components/inputpage/inputpage'
 import Navbar from "./components/navbar/navbar";
 import './index.css';
+import Pdf from "./components/pdf/pdf";
 
 function App() {
     const [currentPage, setCurrentPage] = useState("Home");
@@ -25,6 +26,7 @@ function App() {
           currentPage={currentPage}
           handlePageChange={handlePageChange}
         />
+        <Pdf/>
         {renderPage()}
       </div>
     );
