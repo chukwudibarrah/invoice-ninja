@@ -18,7 +18,7 @@ function Navbar(props) {
           onClick={() => props.handlePageChange("Input")}
           className={props.currentPage === "Input" ? "nav-link active" : "nav-link"}
         >
-          About
+          Input Page
         </a>
       </li>
     </ul>
