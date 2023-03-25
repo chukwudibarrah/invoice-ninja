@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import CreatePdf from "./components/createpdf";
 import Home from './components/homepage/homepage'
 import Input from './components/inputpage/inputpage'
 import Navbar from "./components/navbar/rnavbar";
@@ -26,6 +27,7 @@ function App() {
           handlePageChange={handlePageChange}
         />
         {renderPage()}
+        <CreatePdf/>
       </div>
     );
 }
