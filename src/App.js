@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Home from './components/homepage/homepage'
-import Input from './components/inputpage/rinputpage'
+import Input from './components/inputpage/inputpage'
 import Navbar from "./components/navbar/rnavbar";
 import './index.css';
 
