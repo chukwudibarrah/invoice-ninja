@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import CreatePdf from "./components/createpdf";
 import Home from './components/homepage/homepage'
 import Input from './components/inputpage/inputpage'
 import Navbar from "./components/navbar/rnavbar";
 import './index.css';
-import Pdf from "./components/pdf/pdf";
+import TestApi from './components/testapi/Testapi'
+import ApiTest from './components/testapi/Apitest'
 
 function App() {
     const [currentPage, setCurrentPage] = useState("Home");
@@ -28,7 +28,8 @@ function App() {
           handlePageChange={handlePageChange}
         />
         {renderPage()}
-        <CreatePdf/>
+        <TestApi/>
+        <ApiTest/>
       </div>
     );
 }
