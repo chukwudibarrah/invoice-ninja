@@ -9,7 +9,6 @@ import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
-import AdbIcon from '@mui/icons-material/Adb';
 import "./navbar.css"
 
 const pages = ['Home', 'Input'];
@@ -28,11 +27,14 @@ function Navbar(props) {
 
 
   return (
-    <AppBar position="static">
-      <Container maxWidth="xl">
-        <Toolbar disableGutters>
-          <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
-          <Typography
+    <AppBar position="static" className='appBar'>
+      <Container className='Container' maxWidth="xl">
+        <Toolbar className='Toolbar' disableGutters>
+        <img src="/Logo.png" alt="Invoice Ninja" className="logo" sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
+
+
+          
+          <Typography className='Typo'
             variant="h6"
             noWrap
             component="a"
@@ -47,11 +49,11 @@ function Navbar(props) {
               textDecoration: 'none',
             }}
           >
-            LOGO
+            
           </Typography>
 
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
-            <IconButton
+            <IconButton className='iconButton'
               size="large"
               aria-label="account of current user"
               aria-controls="menu-appbar"
@@ -87,7 +89,7 @@ function Navbar(props) {
               ))}
             </Menu>
           </Box>
-          <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
+          
           <Typography
             variant="h5"
             noWrap
@@ -104,9 +106,10 @@ function Navbar(props) {
               textDecoration: 'none',
             }}
           >
-            LOGO
+            
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' },justifyContent:'flex-end' }}>
+            
             {pages.map((page) => (
               <Button
                 key={page}
