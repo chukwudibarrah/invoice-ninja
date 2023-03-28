@@ -24,7 +24,7 @@ function App() {
         <Navbar
           currentPage={currentPage}
           handlePageChange={handlePageChange}
-        />
+        /> 
         {renderPage()}
       </div>
     );

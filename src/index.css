@@ -10,3 +10,15 @@ body {
   code {
     font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
   }
+
+  #root {
+    
+    min-height: 100vh;
+    background-image: url(/public/background2.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
+  .h1 {
+    text-align: center;
+  }

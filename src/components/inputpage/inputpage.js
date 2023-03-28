@@ -1,25 +1,20 @@
-import React, { useState } from "react";
-import AppBar from "@mui/material/AppBar";
-import Button from "@mui/material/Button";
-import Card from "@mui/material/Card";
-import CardContent from "@mui/material/CardContent";
-import Grid from "@mui/material/Grid";
-import Toolbar from "@mui/material/Toolbar";
-import Typography from "@mui/material/Typography";
-import Link from "@mui/material/Link";
-import Container from "@mui/material/Container";
-import TextField from "@mui/material/TextField";
-import InputAdornment from "@mui/material/InputAdornment";
-import AddIcon from "@mui/icons-material/Add";
-import IconButton from "@mui/material/IconButton";
-import {
-  Table,
-  TableBody,
-  TableHead,
-  TableRow,
-  TableCell,
-} from "@mui/material";
-import fs from "fs";
+import React, { useState } from 'react';
+import AppBar from '@mui/material/AppBar';
+import Button from '@mui/material/Button';
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import Grid from '@mui/material/Grid';
+import Toolbar from '@mui/material/Toolbar';
+import Typography from '@mui/material/Typography';
+import Link from '@mui/material/Link';
+import Container from '@mui/material/Container';
+import TextField from '@mui/material/TextField';
+import InputAdornment from '@mui/material/InputAdornment';
+import AddIcon from '@mui/icons-material/Add';
+import IconButton from '@mui/material/IconButton';
+import { Table, TableBody, TableHead, TableRow, TableCell,} from '@mui/material';
+import './inputpage.css'
+
 
 function Copyright(props) {
   return (
@@ -43,8 +38,10 @@ function Copyright(props) {
 }
 
 const images = {
-  banner: "./logo192.png",
-};
+  banner:'./invoice.png'
+}
+
+
 
 function PricingContent() {
   const [lineItems, setLineItems] = useState([]);
@@ -131,53 +128,41 @@ function PricingContent() {
   return (
     <React.Fragment>
       {/* Appbar with the buttons to generate and download the PDF */}
-      <AppBar
-        position="static"
-        color="default"
-        elevation={0}
-        sx={{ borderBottom: (theme) => `1px solid ${theme.palette.divider}` }}
-      >
-        <Toolbar sx={{ flexWrap: "wrap", justifyContent: "center" }}>
-          <Button
-            onClick={handleGenerateHtml}
-            variant="outlined"
-            sx={{ my: 1, mx: 1.5 }}
-          >
+      <AppBar position="static" color="default" elevation={0} sx={{ borderBottom: (theme) => `1px solid ${theme.palette.divider}` }}>
+        <Toolbar sx={{ flexWrap: 'wrap', justifyContent:'center' }}>
+          <Button href="#" variant="outlined" sx={{ my: 1, mx: 1.5 }} className= "btn1">
             Generate & Download PDF
           </Button>
-          <Button href="#" variant="outlined" sx={{ my: 1, mx: 1.5 }}>
+          <Button href="#" variant="outlined" sx={{ my: 1, mx: 1.5 }} className= "btn2">
             Generate & Email PDF
           </Button>
         </Toolbar>
       </AppBar>
 
-      <Card position="relative" sx={{ m: 2, p: 2 }}>
-        {/* Hero unit */}
-        <Container
-          disableGutters
-          fullWidth
-          component="main"
-          sx={{ pt: 2, pb: 4 }}
-        >
-          <Typography
-            component="h1"
-            variant="h2"
-            align="center"
-            color="white"
-            backgroundColor="navy"
-            fullWidth
-            gutterBottom
-          >
-            Invoice
-          </Typography>
-          <img
-            align="center"
-            src={process.env.PUBLIC_URL + "/" + images.banner}
-            alt="banner"
-          />
-        </Container>
-        {/* End hero unit */}
-        <CardContent>
+
+      <Card position='relative' sx={{m:2, p:2}}>
+          {/* Hero unit */}
+          <Container className='hero' component="main" sx={{ pt: 2, pb: 4, }} >
+            <Typography
+              component="h1"
+              variant="h2"
+              align="center"
+              color="white"
+              backgroundColor="#767793"
+              fullWidth
+              gutterBottom
+            >
+              Invoice
+            </Typography>
+            <img
+              className='logo_input'
+              src={process.env.PUBLIC_URL + '/' + images.banner}
+               alt="banner"
+               style={{ display: 'block', margin: 'auto', width: '100%' }}
+/>
+          </Container>
+          {/* End hero unit */}
+        <CardContent className="form-content">
           <Grid container spacing={3}>
             <Grid item xs={8}>
               <Table>
@@ -254,9 +239,11 @@ function PricingContent() {
                 <AddIcon />
               </IconButton>
 
-              <Grid container>
-                <Grid item xs={4}></Grid>
-                <Grid item xs={8} sx={{ p: 3, mb: 2 }}>
+              <Grid container className= "grid">
+                <Grid item xs={4}>
+
+                </Grid>
+                <Grid item xs={8} sx={{p:3, mb:2}}>
                   <Grid container>
                     <Grid item xs={7} sx={{ mb: 1 }}>
                       <Typography>Subtotal:</Typography>

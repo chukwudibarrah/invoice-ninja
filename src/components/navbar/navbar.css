@@ -1,0 +1,37 @@
+.appBar {
+  background: linear-gradient(to Right, #0d1857, #5ebcfa);
+  color: #fff;
+  }
+  
+  .Toolbar {
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .Typo {
+    font-size: 1.2rem;
+  }
+  
+  .iconButton {
+    margin-right: 10px;
+  }
+  
+  .nav-link {
+    color: #fff;
+    margin-right: 20px;
+    padding: 10px 15px;
+  }
+  
+  .nav-link.active {
+    text-decoration: underline;
+  }
+  
+  .nav-link:hover {
+    color: #ac6b0b;
+  }
+  
+  .logo {
+    width: 75px;
+    height: auto;
+    margin: 0;
+  }
