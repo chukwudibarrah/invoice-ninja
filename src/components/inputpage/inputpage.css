@@ -46,7 +46,7 @@
 .logo_input {
   width: 100%;
   height: auto;
-  margin: 0;
+  margin: 0 !important;
   padding: 0;
   border: none;
 }
@@ -56,4 +56,8 @@
   padding-right: 0 !important;
   max-width: none !important;
   min-width: none !important;
+}
+.hero-text{
+  margin-bottom: 0 !important;
+  padding: 0 !important;
 }
