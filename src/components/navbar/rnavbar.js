@@ -115,7 +115,7 @@ function Navbar(props) {
                 key={page}
                 href={"#"+page} 
                 onClick={() => props.handlePageChange(page)} 
-                class={props.currentPage === page ? "nav-link active" : "nav-link"}
+                className={props.currentPage === page ? "nav-link active" : "nav-link"}
                 sx={{ my: 2, color: 'white', display: 'block', margin:'0px 0px 0px 20px' }}
               >
                 {page}

@@ -134,16 +134,13 @@ function PricingContent() {
           <Button href="#" variant="outlined" sx={{ my: 1, mx: 1.5 }} className= "btn1">
             Generate & Download PDF
           </Button>
-          <Button href="#" variant="outlined" sx={{ my: 1, mx: 1.5 }} className= "btn2">
-            Generate & Email PDF
-          </Button>
         </Toolbar>
       </AppBar>
 
 
       <Card position='relative' sx={{m:2, p:2}}>
           {/* Hero unit */}
-          <Container className='hero' component="main" sx={{ pt: 2, pb: 4 }} >
+          <Container className='hero' component="main" sx={{pb: 4 }} >
             <Typography
               className='hero-text'
               component="h1"
@@ -188,9 +185,9 @@ function PricingContent() {
                             )
                           }
                           required
+                          fullWidth
                           id="description"
                           label="Service Description"
-                          fullWidth
                           variant="standard"
                         />
                       </TableCell>
@@ -208,9 +205,9 @@ function PricingContent() {
                             ),
                           }}
                           required
+                          fullWidth
                           id="rate"
                           label="e.g. 200"
-                          fullWidth
                           variant="standard"
                         />
                       </TableCell>
@@ -221,9 +218,9 @@ function PricingContent() {
                             handleChangeLineItem(index, "qty", e.target.value)
                           }
                           required
+                          fullWidth
                           id="qty"
                           label="e.g. 1"
-                          fullWidth
                           variant="standard"
                         />
                       </TableCell>
@@ -304,8 +301,8 @@ function PricingContent() {
               </Typography>
               <TextField
                 label="Billed to"
-                fullWidth
                 margin="normal"
+                fullWidth
                 variant="standard"
               />
               <TextField

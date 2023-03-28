@@ -11,4 +11,18 @@ p {
     line-height: 1.5;
     margin-bottom: 2rem;
 }
+.home-background{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 85vh;
+}
+.home-div{
+  max-width: 40vw;
+  background-color: antiquewhite;
+  padding: 5vh;
+  opacity: 0.5;
+  text-align: center;
+  border-radius: 8px;
+}
   
