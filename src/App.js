@@ -3,8 +3,6 @@ import Home from './components/homepage/homepage'
 import Input from './components/inputpage/inputpage'
 import Navbar from "./components/navbar/rnavbar";
 import './index.css';
-import TestApi from './components/testapi/Testapi'
-import ApiTest from './components/testapi/Apitest'
 
 function App() {
     const [currentPage, setCurrentPage] = useState("Home");
@@ -28,8 +26,6 @@ function App() {
           handlePageChange={handlePageChange}
         />
         {renderPage()}
-        <TestApi/>
-        <ApiTest/>
       </div>
     );
 }
