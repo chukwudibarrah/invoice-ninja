@@ -81,7 +81,7 @@ function Navbar(props) {
               }}
             >
               {pages.map((page) => (
-                <MenuItem key={page} href={"#"+page} onClick={() => props.handlePageChange(page)} class={props.currentPage === page ? "nav-link active" : "nav-link"}>
+                <MenuItem key={page} href={"#"+page} onClick={() => props.handlePageChange(page)} className={props.currentPage === page ? "nav-link active" : "nav-link"}>
                   <Typography textAlign="center">{page}</Typography>
                 </MenuItem>
               ))}
