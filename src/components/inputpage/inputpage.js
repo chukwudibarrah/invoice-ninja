@@ -15,15 +15,24 @@ import IconButton from '@mui/material/IconButton';
 import { Table, TableBody, TableHead, TableRow, TableCell,} from '@mui/material';
 import './inputpage.css'
 
+
 function Copyright(props) {
   return (
-    <Typography variant="body2" color="text.secondary" align="center" {...props}>
-      {'Copyright © '}
-      <Link color="inherit" href="https://thriving-kelpie-1149f6.netlify.app/#Home">
+    <Typography
+      variant="body2"
+      color="text.secondary"
+      align="center"
+      {...props}
+    >
+      {"Copyright © "}
+      <Link
+        color="inherit"
+        href="https://thriving-kelpie-1149f6.netlify.app/#Home"
+      >
         InvoiceNinja
-      </Link>{' '}
+      </Link>{" "}
       {new Date().getFullYear()}
-      {'.'}
+      {"."}
     </Typography>
   );
 }
@@ -33,11 +42,12 @@ const images = {
 }
 
 
+
 function PricingContent() {
   const [lineItems, setLineItems] = useState([]);
 
   const handleAddLineItem = () => {
-    setLineItems([...lineItems, { description: '', rate: '', qty: '' }]);
+    setLineItems([...lineItems, { description: "", rate: "", qty: "" }]);
   };
 
   const handleChangeLineItem = (index, key, value) => {
@@ -65,6 +75,55 @@ function PricingContent() {
   const tax = calculateTax(subtotal);
   const total = calculateTotal(subtotal, tax);
 
+  // When the user clicks the "Generate html" button
+  const handleGenerateHtml = () => {
+    const filename = "invoice.js";
+
+    // Create the HTML content
+    const html = `
+    <html>
+      <head>
+        <title>Invoice</title>
+      </head>
+      <body>
+        <h1>Invoice</h1>
+        <ul>
+          ${lineItems
+            .map(
+              (item, index) => `
+            <li>
+              <a href="#item${index + 1}">${item.description} - ${
+                item.rate
+              } - ${item.qty} - ${
+                parseFloat(item.rate) * parseFloat(item.qty) || 0
+              }</a>
+            </li>
+          `
+            )
+            .join("")}
+        </ul>
+        ${lineItems
+          .map(
+            (item, index) => `
+          <h2 id="item${index + 1}">${item.description}</h2>
+          <p>Rate: ${item.rate}</p>
+          <p>Quantity: ${item.qty}</p>
+          <p>Line Total: ${
+            parseFloat(item.rate) * parseFloat(item.qty) || 0
+          }</p>
+        `
+          )
+          .join("")}
+      </body>
+    </html>
+  `;
+
+    // Write the HTML content to a file
+    fs.writeFile(filename, html, (err) => {
+      if (err) throw err;
+      console.log(`File ${filename} has been saved.`);
+    });
+  };
 
   return (
     <React.Fragment>
@@ -115,14 +174,18 @@ function PricingContent() {
                     <TableCell>Line Total</TableCell>
                   </TableRow>
                 </TableHead>
-                  <TableBody>
+                <TableBody>
                   {lineItems.map((item, index) => (
                     <TableRow key={index}>
                       <TableCell>
                         <TextField
                           value={item.description}
                           onChange={(e) =>
-                            handleChangeLineItem(index, 'description', e.target.value)
+                            handleChangeLineItem(
+                              index,
+                              "description",
+                              e.target.value
+                            )
                           }
                           required
                           id="description"
@@ -135,11 +198,13 @@ function PricingContent() {
                         <TextField
                           value={item.rate}
                           onChange={(e) =>
-                            handleChangeLineItem(index, 'rate', e.target.value)
+                            handleChangeLineItem(index, "rate", e.target.value)
                           }
                           InputProps={{
                             startAdornment: (
-                              <InputAdornment position="start">£</InputAdornment>
+                              <InputAdornment position="start">
+                                £
+                              </InputAdornment>
                             ),
                           }}
                           required
@@ -153,7 +218,7 @@ function PricingContent() {
                         <TextField
                           value={item.qty}
                           onChange={(e) =>
-                            handleChangeLineItem(index, 'qty', e.target.value)
+                            handleChangeLineItem(index, "qty", e.target.value)
                           }
                           required
                           id="qty"
@@ -180,35 +245,45 @@ function PricingContent() {
                 </Grid>
                 <Grid item xs={8} sx={{p:3, mb:2}}>
                   <Grid container>
-                    <Grid item xs={7} sx={{mb:1}} >
+                    <Grid item xs={7} sx={{ mb: 1 }}>
                       <Typography>Subtotal:</Typography>
                     </Grid>
-                    <Grid align='center' item xs={5}>
+                    <Grid align="center" item xs={5}>
                       <Typography>£{subtotal.toFixed(2)}</Typography>
                     </Grid>
-                    <Grid item xs={7} sx={{mb:1}}>
+                    <Grid item xs={7} sx={{ mb: 1 }}>
                       <Typography>Tax:</Typography>
                     </Grid>
-                    <Grid align='center' item xs={5}>
+                    <Grid align="center" item xs={5}>
                       <Typography>£{tax.toFixed(2)}</Typography>
                     </Grid>
-                    <Grid item xs={7} sx={{mt:1}}>
-                      <Typography variant='h4'>Amount Still Due:</Typography>
+                    <Grid item xs={7} sx={{ mt: 1 }}>
+                      <Typography variant="h4">Amount Still Due:</Typography>
                     </Grid>
-                    <Grid sx={{display:'flex', justifyContent:'center' ,alignItems:'center'}} item xs={5}>
-                      <Typography>£{(total - parseFloat(0)).toFixed(2)}</Typography>
+                    <Grid
+                      sx={{
+                        display: "flex",
+                        justifyContent: "center",
+                        alignItems: "center",
+                      }}
+                      item
+                      xs={5}
+                    >
+                      <Typography>
+                        £{(total - parseFloat(0)).toFixed(2)}
+                      </Typography>
                     </Grid>
                   </Grid>
                 </Grid>
               </Grid>
 
               <TextField
-              label="Notes"
-              fullWidth
-              multiline
-              rows={3}
-              margin="normal"
-              variant='standard'
+                label="Notes"
+                fullWidth
+                multiline
+                rows={3}
+                margin="normal"
+                variant="standard"
               />
               <TextField
                 label="Terms"
@@ -216,16 +291,37 @@ function PricingContent() {
                 multiline
                 rows={2}
                 margin="normal"
-                variant='standard'
+                variant="standard"
               />
             </Grid>
 
-            <Grid item xs={4} >
-              <Typography align='center' variant='h4'>Amount still due:</Typography>
-              <Typography align='center' variant='h3'>£{(total - parseFloat(0)).toFixed(2)}</Typography>
-              <TextField label="Billed to" fullWidth margin="normal" variant='standard'/>
-              <TextField label="Address" fullWidth margin="normal" multiline rows={5} variant='standard'/>
-              <TextField label="Invoice number" fullWidth margin="normal" variant='standard'/>
+            <Grid item xs={4}>
+              <Typography align="center" variant="h4">
+                Amount still due:
+              </Typography>
+              <Typography align="center" variant="h3">
+                £{(total - parseFloat(0)).toFixed(2)}
+              </Typography>
+              <TextField
+                label="Billed to"
+                fullWidth
+                margin="normal"
+                variant="standard"
+              />
+              <TextField
+                label="Address"
+                fullWidth
+                margin="normal"
+                multiline
+                rows={5}
+                variant="standard"
+              />
+              <TextField
+                label="Invoice number"
+                fullWidth
+                margin="normal"
+                variant="standard"
+              />
               <TextField
                 label="Date Issued"
                 type="date"
@@ -250,12 +346,20 @@ function PricingContent() {
       </Card>
 
       {/* Footer */}
-      <Container maxWidth="md" component="footer" sx={{ borderTop: (theme) => `1px solid ${theme.palette.divider}`, mt: 8, py: [3, 6],}}>
+      <Container
+        maxWidth="md"
+        component="footer"
+        sx={{
+          borderTop: (theme) => `1px solid ${theme.palette.divider}`,
+          mt: 8,
+          py: [3, 6],
+        }}
+      >
         <Copyright sx={{ mt: 5 }} />
       </Container>
       {/* End footer */}
     </React.Fragment>
-  )
+  );
 }
 
 export default function Input() {

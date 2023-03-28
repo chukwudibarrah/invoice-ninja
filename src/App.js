@@ -1,10 +1,8 @@
 import React, { useState } from "react";
-//import CreatePdf from "./components/Pdf";
 import Home from './components/homepage/homepage'
 import Input from './components/inputpage/inputpage'
 import Navbar from "./components/navbar/rnavbar";
 import './index.css';
-import Pdf from "./components/pdf/pdf";
 
 function App() {
     const [currentPage, setCurrentPage] = useState("Home");
@@ -28,7 +26,6 @@ function App() {
           handlePageChange={handlePageChange}
         /> 
         {renderPage()}
-        <Pdf/>
       </div>
     );
 }
