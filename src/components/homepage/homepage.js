@@ -2,7 +2,7 @@ import React from 'react';
 import './homepage.css';
 
 const Home = () => (
-  <div>
+  <div className='home-background'>
     <h1 className='h1'>Home Page</h1>
     <p>
       Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed neque velit, lobortis ut magna

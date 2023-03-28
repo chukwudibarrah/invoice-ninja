@@ -13,7 +13,8 @@ import InputAdornment from '@mui/material/InputAdornment';
 import AddIcon from '@mui/icons-material/Add';
 import IconButton from '@mui/material/IconButton';
 import { Table, TableBody, TableHead, TableRow, TableCell,} from '@mui/material';
-import './inputpage.css'
+import './inputpage.css';
+// import fs from 'fs';
 
 
 function Copyright(props) {
@@ -75,55 +76,55 @@ function PricingContent() {
   const tax = calculateTax(subtotal);
   const total = calculateTotal(subtotal, tax);
 
-  // When the user clicks the "Generate html" button
-  const handleGenerateHtml = () => {
-    const filename = "invoice.js";
+  // // When the user clicks the "Generate html" button
+  // const handleGenerateHtml = () => {
+  // const filename = "invoice.js";
 
-    // Create the HTML content
-    const html = `
-    <html>
-      <head>
-        <title>Invoice</title>
-      </head>
-      <body>
-        <h1>Invoice</h1>
-        <ul>
-          ${lineItems
-            .map(
-              (item, index) => `
-            <li>
-              <a href="#item${index + 1}">${item.description} - ${
-                item.rate
-              } - ${item.qty} - ${
-                parseFloat(item.rate) * parseFloat(item.qty) || 0
-              }</a>
-            </li>
-          `
-            )
-            .join("")}
-        </ul>
-        ${lineItems
-          .map(
-            (item, index) => `
-          <h2 id="item${index + 1}">${item.description}</h2>
-          <p>Rate: ${item.rate}</p>
-          <p>Quantity: ${item.qty}</p>
-          <p>Line Total: ${
-            parseFloat(item.rate) * parseFloat(item.qty) || 0
-          }</p>
-        `
-          )
-          .join("")}
-      </body>
-    </html>
-  `;
+  //   // Create the HTML content
+  //   const html = `
+  //   <html>
+  //     <head>
+  //       <title>Invoice</title>
+  //     </head>
+  //     <body>
+  //       <h1>Invoice</h1>
+  //       <ul>
+  //         ${lineItems
+  //           .map(
+  //             (item, index) => `
+  //           <li>
+  //             <a href="#item${index + 1}">${item.description} - ${
+  //               item.rate
+  //             } - ${item.qty} - ${
+  //               parseFloat(item.rate) * parseFloat(item.qty) || 0
+  //             }</a>
+  //           </li>
+  //         `
+  //           )
+  //           .join("")}
+  //       </ul>
+  //       ${lineItems
+  //         .map(
+  //           (item, index) => `
+  //         <h2 id="item${index + 1}">${item.description}</h2>
+  //         <p>Rate: ${item.rate}</p>
+  //         <p>Quantity: ${item.qty}</p>
+  //         <p>Line Total: ${
+  //           parseFloat(item.rate) * parseFloat(item.qty) || 0
+  //         }</p>
+  //       `
+  //         )
+  //         .join("")}
+  //     </body>
+  //   </html>
+  // `;
 
-    // Write the HTML content to a file
-    fs.writeFile(filename, html, (err) => {
-      if (err) throw err;
-      console.log(`File ${filename} has been saved.`);
-    });
-  };
+  //   // Write the HTML content to a file
+  //   fs.writeFile(filename, html, (err) => {
+  //     if (err) throw err;
+  //     console.log(`File ${filename} has been saved.`);
+  //   });
+  // };
 
   return (
     <React.Fragment>
@@ -142,15 +143,14 @@ function PricingContent() {
 
       <Card position='relative' sx={{m:2, p:2}}>
           {/* Hero unit */}
-          <Container className='hero' component="main" sx={{ pt: 2, pb: 4, }} >
+          <Container className='hero' component="main" sx={{ pt: 2, pb: 4 }} >
             <Typography
+              className='hero-text'
               component="h1"
               variant="h2"
               align="center"
               color="white"
               backgroundColor="#767793"
-              fullWidth
-              gutterBottom
             >
               Invoice
             </Typography>
@@ -158,8 +158,8 @@ function PricingContent() {
               className='logo_input'
               src={process.env.PUBLIC_URL + '/' + images.banner}
                alt="banner"
-               style={{ display: 'block', margin: 'auto', width: '100%' }}
-/>
+               style={{width: '100%' }}
+            />
           </Container>
           {/* End hero unit */}
         <CardContent className="form-content">

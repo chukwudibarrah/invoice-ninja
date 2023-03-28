@@ -11,14 +11,13 @@ body {
     font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
   }
 
+  .h1 {
+    text-align: center;
+  }
   #root {
     
     min-height: 100vh;
-    background-image: url(/public/background2.jpg);
+    background-image: url(./homebackground.jpeg);
     background-repeat: no-repeat;
     background-size: cover;
-  }
-
-  .h1 {
-    text-align: center;
   }
