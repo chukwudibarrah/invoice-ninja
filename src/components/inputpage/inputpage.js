@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import AppBar from '@mui/material/AppBar';
 import Button from '@mui/material/Button';
 import Card from '@mui/material/Card';
@@ -13,8 +13,9 @@ import InputAdornment from '@mui/material/InputAdornment';
 import AddIcon from '@mui/icons-material/Add';
 import IconButton from '@mui/material/IconButton';
 import { Table, TableBody, TableHead, TableRow, TableCell,} from '@mui/material';
+import html2canvas from 'html2canvas';
+import jsPDF from 'jspdf';
 import './inputpage.css';
-// import fs from 'fs';
 
 
 function Copyright(props) {
@@ -76,69 +77,62 @@ function PricingContent() {
   const tax = calculateTax(subtotal);
   const total = calculateTotal(subtotal, tax);
 
-  // // When the user clicks the "Generate html" button
-  // const handleGenerateHtml = () => {
-  // const filename = "invoice.js";
 
-  //   // Create the HTML content
-  //   const html = `
-  //   <html>
-  //     <head>
-  //       <title>Invoice</title>
-  //     </head>
-  //     <body>
-  //       <h1>Invoice</h1>
-  //       <ul>
-  //         ${lineItems
-  //           .map(
-  //             (item, index) => `
-  //           <li>
-  //             <a href="#item${index + 1}">${item.description} - ${
-  //               item.rate
-  //             } - ${item.qty} - ${
-  //               parseFloat(item.rate) * parseFloat(item.qty) || 0
-  //             }</a>
-  //           </li>
-  //         `
-  //           )
-  //           .join("")}
-  //       </ul>
-  //       ${lineItems
-  //         .map(
-  //           (item, index) => `
-  //         <h2 id="item${index + 1}">${item.description}</h2>
-  //         <p>Rate: ${item.rate}</p>
-  //         <p>Quantity: ${item.qty}</p>
-  //         <p>Line Total: ${
-  //           parseFloat(item.rate) * parseFloat(item.qty) || 0
-  //         }</p>
-  //       `
-  //         )
-  //         .join("")}
-  //     </body>
-  //   </html>
-  // `;
 
-  //   // Write the HTML content to a file
-  //   fs.writeFile(filename, html, (err) => {
-  //     if (err) throw err;
-  //     console.log(`File ${filename} has been saved.`);
-  //   });
-  // };
+  const screenshotRef = useRef();
+
+  const captureScreenshot = async () => {
+    try {
+      const canvas = await html2canvas(screenshotRef.current);
+      const imgData = canvas.toDataURL('image/png');
+
+            // Create a new jsPDF instance
+            const pdf = new jsPDF('p', 'mm', 'a4');
+
+            // Calculate the width and height of the content to fit on a single A4 page
+            const pageWidth = pdf.internal.pageSize.getWidth();
+            const pageHeight = pdf.internal.pageSize.getHeight();
+            const imgWidth = canvas.width;
+            const imgHeight = canvas.height;
+            const widthRatio = pageWidth / imgWidth;
+            const heightRatio = pageHeight / imgHeight;
+            const ratio = Math.min(widthRatio, heightRatio);
+      
+            const scaledWidth = imgWidth * ratio;
+            const scaledHeight = imgHeight * ratio;
+      
+            // Add the image to the PDF
+            pdf.addImage(imgData, 'PNG', 0, 0, scaledWidth, scaledHeight);
+      
+            // Save the PDF
+            pdf.save('invoice.pdf');
+
+      // const link = document.createElement('a');
+      // link.href = imgData;
+      // link.download = 'invoice.png';
+      // document.body.appendChild(link);
+      // link.click();
+      // document.body.removeChild(link);
+    } catch (err) {
+      console.error('Error capturing screenshot:', err);
+    }
+  };
+
+
 
   return (
     <React.Fragment>
       {/* Appbar with the buttons to generate and download the PDF */}
       <AppBar position="static" color="default" elevation={0} sx={{ borderBottom: (theme) => `1px solid ${theme.palette.divider}` }}>
         <Toolbar sx={{ flexWrap: 'wrap', justifyContent:'center' }}>
-          <Button href="#" variant="outlined" sx={{ my: 1, mx: 1.5 }} className= "btn1">
+          <Button onClick={captureScreenshot} variant="outlined" sx={{ my: 1, mx: 1.5 }} className= "btn1">
             Generate & Download PDF
           </Button>
         </Toolbar>
       </AppBar>
 
 
-      <Card position='relative' sx={{m:2, p:2}}>
+      <Card position='relative' ref={screenshotRef} sx={{m:2, p:2}}>
           {/* Hero unit */}
           <Container className='hero' component="main" sx={{pb: 4 }} >
             <Typography
